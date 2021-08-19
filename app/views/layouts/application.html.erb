@@ -1,15 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e8947900bd.js" crossorigin="anonymous"></script>
+
     <title>CampingShareSite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <header>
+      <div class="container-lg-fluid d-block flex-column" style="color: white; background-color: rgba(255,250,240,0.7); height: 80px;">
+        <div class="row">
+          <%= flash[:message] %>
+          <nav class="navbar navbar-expand-lg navbar-light fixed-top ml-auto" style="color: white; background-color: rgba(255,250,240,0.7); height: 80px;">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+
+            </button>
+            <% if admin_signed_in? %>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "トップ", admin_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "投稿一覧", admin_contents_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+            <% elsif user_signed_in? %>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "トップ", root_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "投稿一覧", contents_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "会員一覧", users_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+            <% else %>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "トップ", root_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "About", about_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+                <li class="nav-item active ml-auto" style="width: 150px;">
+                  <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
+                </li>
+              </ul>
+            </div>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <div class="container-fluid text-center" style="display: block; color: black; background-color: rgba(255,250,240,1.0); height: 30px;">
+        <p>CopyRight 2021 Seigo inc.</p>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-4.4.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
   </body>
 </html>
