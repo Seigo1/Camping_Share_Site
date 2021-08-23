@@ -1,8 +1,25 @@
 <div class="container-lg-fluid">
-  <div class="row cover-2 text-center mx-auto" style="height: 700px; padding: 150px 0 200px 0; background-color: rgba(255,250,220,1.0);">
+  <div class="row cover-1 text-center mx-auto" style="height: 700px; padding: 150px 0 200px 0; background-color: rgba(255,250,220,1.0);">
     <div class="col-lg mb-5">
       <h1 class="title mx-auto mb-4">Camping Share Site</h1>
-      <a>キャンプ好きのための検索サイト</a>
+      <a>キャンプ好きのための検索サイト</a><br />
+      <div style="margin-top: 60px;">
+        <% if user_signed_in? %>
+          <%= link_to "投稿する", new_content_path, class: "btn-lg btn-light" %>
+        <% elsif %>
+          <h1>About</h1>
+        <% end %>
+      </div>
     </div>
+  </div>
+  <div class="row-lg">
+    <table class="table table-bordered">
+      <thead>
+
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
   </div>
 </div>

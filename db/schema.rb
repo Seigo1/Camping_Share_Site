@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_08_13_080249) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "email", null: false
     t.string "phone_number", null: false
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_080249) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "image_id"
+    t.text "introduction"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

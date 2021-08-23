@@ -32,17 +32,17 @@
  }
 
  .cover-1 {
-  background: url(/assets/tent.jpeg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
- }
-
- .cover-2 {
   background: url(/assets/snow.jpeg);
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-attachment: fixed;
+ }
+
+ .top-title {
+  font-size: 28px;
+  color: black;
+  font-family: 'Kaushan Script', cursive;
  }
 
  .title {

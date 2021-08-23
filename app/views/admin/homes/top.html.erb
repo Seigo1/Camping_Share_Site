@@ -11,14 +11,15 @@
         </tr>
       </thead>
       <tbody>
-        <!-- @contacts.each do |contact| -->
+        <% @contacts.each do |contact| %>
         <tr>
-          <td>2021/8/18</td>
-          <td>name</td>
-          <td>title</td>
-          <td>introduction</td>
+          <% link_to %>
+          <td><%= contact.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          <td><%= contact.name %></td>
+          <td><%= contact.subject %></td>
+          <td><%= contact.message %></td>
         </tr>
-        <!-- end -->
+        <% end %>
       </tbody>
     </table>
   </div>

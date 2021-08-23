@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e8947900bd.js" crossorigin="anonymous"></script>
 
@@ -24,17 +25,28 @@
       <div class="container-lg-fluid d-block flex-column" style="color: white; background-color: rgba(255,250,240,0.7); height: 80px;">
         <div class="row">
           <%= flash[:message] %>
-          <nav class="navbar navbar-expand-lg navbar-light fixed-top ml-auto" style="color: white; background-color: rgba(255,250,240,0.7); height: 80px;">
+          <nav class="navbar navbar-expand-lg navbar-light fixed-top ml-auto" style="color: white; background-color: rgba(255,250,240,0.7); height: 80px; width: 100%;">
+            <% if admin_signed_in? %>
+              <%= link_to admin_path do %>
+                <span style="font-size: 28px; color: Dodgerblue;">
+                  <i class="fas fa-campground"></i>
+                </span>
+                <span class="top-title m-auto mb-4">Camping Share Site</apan>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+                <span style="font-size: 30px; color: Dodgerblue;">
+                  <i class="fas fa-campground"></i>
+                </span>
+                <span class="top-title m-auto mb-4">Camping Share Site</apan>
+              <% end %>
+            <% end %>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-
             </button>
             <% if admin_signed_in? %>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active ml-auto" style="width: 150px;">
-                  <%= link_to "トップ", admin_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
-                </li>
                 <li class="nav-item active ml-auto" style="width: 150px;">
                   <%= link_to "投稿一覧", admin_contents_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
                 </li>
@@ -48,17 +60,16 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
                 </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+              <dl style="width: 100px;">
+                <%= search_form_for @search, url: admin_contents_path do |f| %>
+                  <dt><%= f.text_field :name ,placeholder: '検索するテキストを入力...' %></dt>
+                  <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+                <% end %>
+              </dl>
             </div>
             <% elsif user_signed_in? %>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active ml-auto" style="width: 150px;">
-                  <%= link_to "トップ", root_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
-                </li>
+              <ul class="navbar-nav ml-auto" style="width: 80%;">
                 <li class="nav-item active ml-auto" style="width: 150px;">
                   <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-dark nav-link m-1", type:"button" %>
                 </li>
@@ -71,20 +82,18 @@
                 <li class="nav-item active ml-auto" style="width: 150px;">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
                 </li>
+                <li class="nav-item active my-auto ml-auto">
+                  <%= search_form_for @search, url: contents_path do |f| %>
+                    <%= f.text_field :name ,placeholder: '入力してください' %>
+                    <%= f.submit ("検索") , class: 'btn btn-secondary'%>
+                  <% end %>
+                </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
             <% else %>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active ml-auto" style="width: 150px;">
                   <%= link_to "トップ", root_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
-                </li>
-                <li class="nav-item active ml-auto" style="width: 150px;">
-                  <%= link_to "About", about_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
                 </li>
                 <li class="nav-item active ml-auto" style="width: 150px;">
                   <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark nav-link m-1", type:"button" %>
@@ -102,6 +111,11 @@
     <%= yield %>
     <footer class="footer">
       <div class="container-fluid text-center" style="display: block; color: black; background-color: rgba(255,250,240,1.0); height: 30px;">
+        <!-- 管理者画面ではお問合せは表示しない -->
+        <% if admin_signed_in? %>
+        <% elsif%>
+          <%= link_to "お問合せはこちら", new_contact_path %>
+        <% end %>
         <p>CopyRight 2021 Seigo inc.</p>
       </div>
     </footer>

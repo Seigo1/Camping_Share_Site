@@ -11,14 +11,14 @@
         </tr>
       </thead>
       <tbody>
-        <!-- @contacts.each do |contact| -->
+        <% @contents.each do |content| %>
         <tr>
-          <td>2021/8/18</td>
-          <td>name</td>
-          <td>camp</td>
-          <td>address</td>
+          <td><%= content.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          <td><%= content.user.name %></td>
+          <td><%= content.name %></td>
+          <td><%= content.address %></td>
         </tr>
-        <!-- end -->
+        <% end %>
       </tbody>
     </table>
   </div>

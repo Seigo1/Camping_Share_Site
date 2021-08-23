@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-lg">
   <h2 class="mt-3">会員一覧</h2>
   <div class="row mx-auto">
     <table class="col-lg table table-bordered">
@@ -7,18 +7,18 @@
           <th>ID</th>
           <th>名前</th>
           <th>メールアドレス</th>
-          <th>会員ステータス</th>
+          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
-        <!-- @contacts.each do |contact| -->
+        <% @users.each do |user| %>
         <tr>
-          <td>1</td>
-          <td>name</td>
-          <td>email</td>
-          <td>active</td>
+          <th><%= user.id %></td>
+          <td><%= link_to user.name, admin_user_path(user.id) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.is_active %></td>
         </tr>
-        <!-- end -->
+        <% end %>
       </tbody>
     </table>
   </div>
