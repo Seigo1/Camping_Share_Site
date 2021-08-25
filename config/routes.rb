@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :contents, only:[:index, :show, :edit, :new, :create, :destroy, :update]
     resources :users, only:[:index, :show, :edit, :update]
-    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    get 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/unsubscribe' => 'users#destroy', as: 'destroy'
     resources :contacts, only: [:new, :create]
     post 'contacts/confirm' => 'contacts#confirm', as: 'confirm'

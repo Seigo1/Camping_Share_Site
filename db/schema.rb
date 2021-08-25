@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_080249) do
     t.string "name", null: false
     t.string "address", null: false
     t.text "introduction", null: false
-    t.integer "lat", default: 0, null: false
-    t.integer "lng", default: 0, null: false
+    t.float "latitude", default: 0.0, null: false
+    t.float "longitude", default: 0.0, null: false
     t.string "image_id", null: false
     t.string "review", default: "0", null: false
     t.datetime "created_at", null: false

@@ -1,0 +1,12 @@
+<div class="d-block mx-auto text-lg-center" style="margin-top: 200px; margin-bottom: 50px;">
+  <h3 class="my-5">本当に退会しますか？</h3>
+  <p>
+    退会すると、会員登録情報の閲覧や<br/>
+    これまでの投稿を編集できなくなります。<br/>
+    退会する場合は、「退会する」をクリックしてください。<br/>
+  </p>
+</div>
+<div class="d-block mx-auto text-lg-center" style="margin-top: 20px; margin-bottom: 200px;">
+  <%= link_to "退会しない", user_path(current_user.id), class: "btn btn-primary mr-3", type:"button" %>
+  <%= link_to "退会する", unsubscribe_path, method: :patch, class: "btn btn-danger", type:"button" %>
+</div>

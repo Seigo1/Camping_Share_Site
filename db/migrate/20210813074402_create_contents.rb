@@ -6,8 +6,8 @@ class CreateContents < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :address, null: false
       t.text :introduction, null: false
-      t.integer :lat, default: 0, null: false
-      t.integer :lng, default: 0, null: false
+      t.float :latitude, default: 0, null: false
+      t.float :longitude, default: 0, null: false
       t.string :image_id, null: false
       t.string :review, default: 0, null: false
       t.timestamp :created_at, default: -> { "now()" }, null: false

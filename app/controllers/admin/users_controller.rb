@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @User = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
@@ -20,10 +20,13 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  
+  def unsubscribe
+    @user = User.find(current_customer.id)
+  end
+
 
   private
     def user_params
-      params.require(:user).permit(:name, :introduction, :image_id, :is_active)
+      params.require(:user).permit(:name, :email, :introduction, :image, :is_active)
     end
 end

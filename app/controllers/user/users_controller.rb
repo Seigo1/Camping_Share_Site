@@ -4,7 +4,8 @@ class User::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
+    @favorites = Favorite.where(user_id: current_user.id)
   end
 
   def edit

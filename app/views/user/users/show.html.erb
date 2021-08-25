@@ -1,0 +1,45 @@
+<div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
+  <div class="row text-center mx-auto" style="width: 80%;">
+    <table class="col-lg table table-bordered mx-auto my-3">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 20%;">
+            <%= attachment_image_tag @user, :image, :fill, 20, 20, size:'40x40', format: 'jpeg', fallback: "no_image.jpeg" %>
+          </td>
+          <td>
+            <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
+          </td>
+        </tr>
+        <tr>
+          <td>ニックネーム</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>紹介文</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="col-lg table table-bordered mx-auto my-3">
+      <thead>
+        <tr>
+          <th colspan="2">お気に入り</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+        <tr>
+          <td>キャンプ場名</td>
+          <td colspan="2"><%= favorite.content.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
