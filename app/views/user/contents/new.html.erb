@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row">
     <%= form_with model: @content, :url => {:action => :create}, local: true do |f| %>
-      <%= f.label :"ジャンル*" %>
-      <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %>
+      <%= f.label :"ジャンル*" %><br />
+      <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %><br />
       <%= f.label :"キャンプ場名*" %>
       <%= f.text_field :name, class: "form-control" %>
       <%= f.label :"住所*" %>
       <%= f.text_field :address, class: "form-control" %>
       <%= f.label :"紹介文*" %>
       <%= f.text_field :introduction, class: "form-control" %>
-      <%= f.label :"評価*" %>
-      <%= f.select :review, [["1", 0], ["2", 1], ["3", 2], ["4", 3], ["5", 4]] %>
-      <%= f.label :"写真" %>
-      <%= f.attachment_field :image, class: "form-control-file" %>
+      <%= f.label :"評価*" %><br />
+      <%= f.select :review, Content.reviews.keys, {prompt: "選択してください"} %><br />
       <%= f.submit "投稿する" , class: 'btn btn-secondary'%>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :latitude %>

@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_080249) do
     t.text "introduction", null: false
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
-    t.string "image_id", null: false
-    t.string "review", default: "0", null: false
+    t.string "content_image_id"
+    t.integer "review", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

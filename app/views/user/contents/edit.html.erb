@@ -1,0 +1,53 @@
+<%= form_with model: @content, :url => {:action => :update}, local:true do |f| %>
+<div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
+  <div class="row text-center mx-auto" style="width: 80%;">
+    <table class="col-lg table table-bordered mx-auto my-3">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <th>ジャンル</th>
+          <td class="form-group">
+            <%= f.collection_select(:genre_id, Genre.all, :id, :name, autofocus: true ) %>
+          </td>
+        </tr>
+        <tr>
+          <th>キャンプ場名</th>
+          <td class="form-group">
+            <%= f.text_field :name,value: @content.name, class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td class="form-group">
+            <%= f.text_field :address,value: @content.address, class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <th>紹介文</th>
+          <td class="form-group">
+            <%= f.text_field :introduction,value: @content.introduction, class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <th>評価</th>
+          <td class="form-group">
+            <%= f.select :review, Content.reviews.keys, {prompt: "選択してください"} %>
+          </td>
+        </tr>
+        <tr>
+          <th>写真</th>
+          <td class="form-group">
+            <%= f.attachment_field :content_image, class: "form-control-file" %>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td class="form-group">
+            <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+            <%= link_to "投稿を削除", content_path, method: :delete, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<% end %>

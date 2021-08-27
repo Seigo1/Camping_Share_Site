@@ -1,7 +1,44 @@
 <div class="container">
   <div class="row">
-    <table class="table table-bordered">
-
+    <table class="col-lg table table-bordered mx-auto my-3">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 20%;">評価</td>
+          <td>
+            <%= @content.review %>
+          </td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td>
+            <%= @content.genre.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>キャンプ場名</td>
+          <td><%= @content.name %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @content.address %></td>
+        </tr>
+        <tr>
+          <td>紹介文</td>
+          <td><%= @content.introduction %></td>
+        </tr>
+        <tr>
+          <td>写真</td>
+          <td>
+            <%= attachment_image_tag @content, :content_image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
+            <% if current_user %>
+              <%= link_to "編集する", edit_content_path(@content.id), class: "btn btn-success", type:"button" %>
+            <% else %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

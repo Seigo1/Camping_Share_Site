@@ -10,10 +10,12 @@ class User < ApplicationRecord
   has_many :goods, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :contacts, dependent: :destroy
+
   attachment :image
 
   enum is_active: { 有効: true, 無効: false }
-
+  
+  # 有効のユーザーしかログインできなくする
   def active_for_authentication?
     super && (self.is_active == "有効")
   end

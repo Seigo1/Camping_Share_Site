@@ -1,31 +1,76 @@
 <div class="container">
-  <h2 class="mt-3">投稿詳細</h2>
-  <div class="row align-items-center">
-    <!--写真-->
-    <table class="col-lg table table-bordered mx-auto">
+  <div class="row">
+    <table class="col-lg table table-bordered mx-auto my-3">
       <thead>
-        <tr>
-          <th>ID</th>
-          <th style="width: 100px;">日時</th>
-          <th style="width: 100px;">名前</th>
-          <th style="width: 100px;">キャンプ場名</th>
-          <th style="width: 150px;">住所</th>
-          <th>ジャンル</th>
-          <th>紹介文</th>
-          <th>評価</th>
-        </tr>
       </thead>
       <tbody>
-        <!-- @contacts.each do |contact| -->
         <tr>
-          <td>2021/8/18</td>
-          <td>name</td>
-          <td>camp</td>
-          <td>address</td>
-          <td></td>
+          <td style="width: 20%;">評価</td>
+          <td>
+            <%= @content.review %>
+          </td>
         </tr>
-        <!-- end -->
+        <tr>
+          <td>ジャンル</td>
+          <td>
+            <%= @content.genre.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>キャンプ場名</td>
+          <td><%= @content.name %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @content.address %></td>
+        </tr>
+        <tr>
+          <td>紹介文</td>
+          <td><%= @content.introduction %></td>
+        </tr>
+        <tr>
+          <td>写真</td>
+          <td>
+            <%= attachment_image_tag @content, :content_image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
+            <%= link_to "編集する", edit_content_path(@content.id), class: "btn btn-success", type:"button" %>
+            <%= link_to "投稿を削除", content_path, method: :delete, class: "btn btn-danger" %>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <!--マップ情報-->
   </div>
+</div>
+<div id="map"></div>
+
+<script type="text/javascript">
+  function initMap() {
+// latitude,longitudeから位置を特定
+    var test ={lat: <%= @content.latitude %>, lng: <%= @content.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: test
+      });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = '住所：<%= @content.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+// Map上の指定した位置にピンを挿して表示する
+    var marker = new google.maps.Marker({
+      position:test,
+      map: map,
+      title: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<!-- googlemap API -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
