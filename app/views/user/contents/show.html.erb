@@ -32,12 +32,22 @@
           <td>写真</td>
           <td>
             <%= attachment_image_tag @content, :content_image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
-            <% if current_user %>
+            <!-- 投稿者のみに編集ボタンを表示 -->
+            <% if current_user.id == @content.user_id %>
               <%= link_to "編集する", edit_content_path(@content.id), class: "btn btn-success", type:"button" %>
             <% else %>
             <% end %>
           </td>
         </tr>
+        <!-- 投稿者でなければ良いねボタンとブックマークを表示 -->
+        <% if current_user.id == @content.user_id %>
+        <% else %>
+        <tr>
+          <td colspan="2" id="like-btn-<%= @content.id %>">
+            <%= render 'user/favorites/favorite', content: @content %>
+          </td>
+        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

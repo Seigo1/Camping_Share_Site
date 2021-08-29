@@ -4,7 +4,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    id = params[:id]
     @user = User.find(params[:id])
+    @contents = Content.where("user_id = #{id}")
   end
 
   def edit

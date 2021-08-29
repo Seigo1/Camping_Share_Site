@@ -4,7 +4,9 @@ class User::UsersController < ApplicationController
   end
 
   def show
+    id = params[:id]
     @user = User.find(params[:id])
+    @contents = Content.where("user_id = #{id}")
     @favorites = Favorite.where(user_id: current_user.id)
   end
 

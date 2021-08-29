@@ -9,7 +9,10 @@
             <%= attachment_image_tag @user, :image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
           </td>
           <td>
-            <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
+            <% if current_user.id == @user.id %>
+              <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
+            <% else %>
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -34,9 +37,33 @@
       </thead>
       <tbody>
         <% @favorites.each do |favorite| %>
+          <tr>
+            <td>キャンプ場名</td>
+            <td colspan="2"><%= favorite.content.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row text-center mx-auto" style="width: 80%;">
+    <table class="col-lg table table-bordered mx-auto my-3">
+      <thead>
+        <th>キャンプ場名</th>
+        <th>住所</th>
+        <th>紹介文</th>
+        <th>評価</th>
+      </thead>
+      <tbody>
+        <% @contents.each do |content| %>
         <tr>
-          <td>キャンプ場名</td>
-          <td colspan="2"><%= favorite.content.name %></td>
+          <td>
+            <%= link_to content_path(content.id) do %>
+              <%= content.name %>
+            <% end %>
+            </td>
+          <td><%= content.address %></td>
+          <td><%= content.introduction %></td>
+          <td><%= content.review %></td>
         </tr>
         <% end %>
       </tbody>

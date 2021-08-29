@@ -58,21 +58,12 @@ ActiveRecord::Schema.define(version: 2021_08_13_080249) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "content_id", null: false
-    t.integer "favorite_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "goods", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "content_id", null: false
-    t.integer "follow_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: 'homes#top'
     resources :contents, only:[:index, :show, :edit, :new, :create, :destroy, :update]
+    resources :contents do
+      resource :favorites, only: [:create, :destroy]
+    end
     resources :users, only:[:index, :show, :edit, :update]
     get 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/unsubscribe' => 'users#destroy', as: 'destroy'
