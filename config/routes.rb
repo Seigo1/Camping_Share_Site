@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :user do
+    get 'bookmarks/create'
+    get 'bookmarks/destroy'
+  end
   devise_for :users, controllers: {
   sessions:      'users/sessions',
   passwords:     'users/passwords',
@@ -15,6 +19,7 @@ Rails.application.routes.draw do
     resources :contents, only:[:index, :show, :edit, :new, :create, :destroy, :update]
     resources :contents do
       resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
     resources :users, only:[:index, :show, :edit, :update]
     get 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe'

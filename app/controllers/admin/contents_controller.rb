@@ -1,4 +1,6 @@
 class Admin::ContentsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @contents = Content.all.order(created_at: :desc)
   end

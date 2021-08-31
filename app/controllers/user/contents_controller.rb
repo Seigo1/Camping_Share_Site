@@ -1,4 +1,6 @@
 class User::ContentsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @contents = Content.all.order(created_at: :desc)
   end

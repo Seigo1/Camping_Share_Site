@@ -39,12 +39,17 @@
             <% end %>
           </td>
         </tr>
-        <!-- 投稿者でなければ良いねボタンとブックマークを表示 -->
+        <!-- 投稿者でなければいいねボタンとブックマークを表示 -->
         <% if current_user.id == @content.user_id %>
         <% else %>
         <tr>
-          <td colspan="2" id="like-btn-<%= @content.id %>">
-            <%= render 'user/favorites/favorite', content: @content %>
+          <td colspan="2">
+            <div id='favorites_buttons'>
+              <%= render partial: 'user/favorites/favorite', content: @content %>
+            </div>
+            <div id='bookmarks_buttons'>
+              <%= render partial: 'user/bookmarks/bookmark', content: @content %>
+            </div>
           </td>
         </tr>
         <% end %>

@@ -69,5 +69,4 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-  config.web_console.whitelisted_ips = '211.1.214.134'
 end

@@ -36,10 +36,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @favorites.each do |favorite| %>
+        <% @bookmarks.each do |bookmark| %>
           <tr>
             <td>キャンプ場名</td>
-            <td colspan="2"><%= favorite.content.name %></td>
+            <td colspan="2">
+            <%= link_to content_path(bookmark.content.id) do %>
+              <%= bookmark.content.name %>
+            <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

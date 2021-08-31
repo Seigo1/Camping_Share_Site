@@ -1,4 +1,6 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @users = User.all
   end
@@ -7,7 +9,7 @@ class User::UsersController < ApplicationController
     id = params[:id]
     @user = User.find(params[:id])
     @contents = Content.where("user_id = #{id}")
-    @favorites = Favorite.where(user_id: current_user.id)
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def edit
