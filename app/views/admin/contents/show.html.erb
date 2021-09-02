@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container-lg">
+  <h2 class="mt-5"><%= @content.name %></h2>
   <div class="row">
     <table class="col-lg table table-bordered mx-auto my-3">
       <thead>
@@ -9,16 +10,15 @@
           <td>
             <%= @content.review %>
           </td>
+          <td rowspan="5" class="text-center">
+            <%= attachment_image_tag @content, :content_image, :fill, 300, 300, size:'300x300', format: 'jpeg', fallback: "no_image.jpeg" %>
+          </td>
         </tr>
         <tr>
           <td>ジャンル</td>
           <td>
             <%= @content.genre.name %>
           </td>
-        </tr>
-        <tr>
-          <td>キャンプ場名</td>
-          <td><%= @content.name %></td>
         </tr>
         <tr>
           <td>住所</td>
@@ -29,11 +29,9 @@
           <td><%= @content.introduction %></td>
         </tr>
         <tr>
-          <td>写真</td>
-          <td>
-            <%= attachment_image_tag @content, :content_image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
-            <%= link_to "編集する", edit_content_path(@content.id), class: "btn btn-success", type:"button" %>
-            <%= link_to "投稿を削除", content_path, method: :delete, class: "btn btn-danger" %>
+          <td colspan="2" class="text-center">
+            <%= link_to "編集する", edit_admin_content_path(@content.id), class: "btn btn-success mr-5", type:"button" %>
+            <%= link_to "投稿を削除", admin_content_path, method: :delete, class: "btn btn-danger ml-5" %>
           </td>
         </tr>
       </tbody>
@@ -41,14 +39,13 @@
   </div>
 </div>
 <div id="map"></div>
-
 <script type="text/javascript">
   function initMap() {
 // latitude,longitudeから位置を特定
-    var test ={lat: <%= @content.latitude %>, lng: <%= @content.longitude %>};
+    var point ={lat: <%= @content.latitude %>, lng: <%= @content.longitude %>};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
-      center: test
+      center: point
       });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
@@ -60,7 +57,7 @@
 
 // Map上の指定した位置にピンを挿して表示する
     var marker = new google.maps.Marker({
-      position:test,
+      position:point,
       map: map,
       title: contentString
     });

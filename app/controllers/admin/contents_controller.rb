@@ -16,7 +16,7 @@ class Admin::ContentsController < ApplicationController
   def destroy
     @content = Content.find(params[:id])
     if @content.destroy
-      redirect_to root_path, notice: '投稿を削除しました'
+      redirect_to admin_contents_path, notice: '投稿を削除しました'
     else
       render :edit
     end
@@ -25,7 +25,7 @@ class Admin::ContentsController < ApplicationController
   def update
     @content = Content.find(params[:id])
     if @content.update(content_params)
-      redirect_to content_path(@content.id), notice: '投稿の編集が完了しました'
+      redirect_to admin_content_path(@content.id), notice: '投稿の編集が完了しました'
     else
       render :edit
     end

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-lg">
   <h2 class="mt-3">ジャンル一覧・追加</h2>
-  <div class="row-lg mx-auto">
+  <div class="lg">
     <%= form_for @new_genre,:url => {:action => :create}, local:true do |f| %>
       <div class="form-group">
         <label for="genre_name">ジャンル名</label>
@@ -11,7 +11,7 @@
       </div>
     <% end %>
   </div>
-  <table class="row-lg table table-bordered mr-auto" style="width: 420px;">
+  <table class="row-lg table table-bordered" style="width: 420px;">
     <thead>
       <tr>
         <th scope style="width: 300px;">ジャンル</th>
@@ -27,3 +27,4 @@
       <% end %>
     </tbody>
   </table>
+</div>

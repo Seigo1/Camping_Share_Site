@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 2,maximum: 10 }
   validates :email, presence: true, uniqueness: true
-  validates :address, presence: true, length: { minimum: 2,maximum: 10 }
 
   has_many :genres, through: :contents
   has_many :contents, through: :favorites

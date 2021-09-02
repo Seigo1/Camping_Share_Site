@@ -1,49 +1,51 @@
 <%= form_with model: @user,:url => {:action => :update}, local:true do |f| %>
-<div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
-  <div class="row text-center mx-auto" style="width: 80%;">
-    <table class="col-lg table table-bordered mx-auto my-3">
-      <thead>
-      </thead>
-      <tbody>
-        <tr>
-          <th>ニックネーム</th>
-          <td class="form-group">
-            <%= f.text_field :name, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th>写真</th>
-          <td class="form-group">
-            <%= f.attachment_field :image, class: "form-control-file" %>
-          </td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td class="form-group">
-            <%= f.text_field :email, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th>紹介文</th>
-          <td class="form-group">
-            <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr class="form-group">
-          <th>会員ステータス</th>
-          <td>
-            <%= f.radio_button :is_active, "有効" %>
-            <%= f.label :is_active, "有効", {value: :is_active, style: "display: inline-block;"} %>
-            <%= f.radio_button :is_active, "無効" %>
-            <%= f.label :is_active, "無効", {value: :is_active, style: "display: inline-block;"} %>
-          </td>
-        </tr>
-        <tr>
-          <th></th>
-          <td class="form-group">
-            <%= f.submit '編集内容を保存', class: "btn btn-success" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
+    <div class="row text-center mx-auto" style="width: 80%;">
+      <table class="col-lg table table-bordered mx-auto my-3">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <th>ニックネーム</th>
+            <td class="form-group">
+              <%= f.text_field :name, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <th>写真</th>
+            <td class="form-group">
+              <%= f.attachment_field :image, class: "form-control-file" %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td class="form-group">
+              <%= f.text_field :email, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <th>紹介文</th>
+            <td class="form-group">
+              <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr class="form-group">
+            <th>会員ステータス</th>
+            <td>
+              <%= f.radio_button :is_active, "有効" %>
+              <%= f.label :is_active, "有効", {value: :is_active, style: "display: inline-block;"} %>
+              <%= f.radio_button :is_active, "無効" %>
+              <%= f.label :is_active, "無効", {value: :is_active, style: "display: inline-block;"} %>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td class="form-group">
+              <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>
