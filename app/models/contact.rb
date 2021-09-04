@@ -1,9 +1,9 @@
 class Contact < ApplicationRecord
-  belongs_to :user
 
-  validates :name, presence: true, length: { minimum: 2,maximum: 10 }
-  validates :email, presence: true, length: { minimum: 2,maximum: 50 }
-  validates :introduction, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :email, presence: true, length: { maximum: 50 }
+  validates :subject, presence: true, length: { maximum: 20 }
+  validates :message, presence: true, length: { maximum: 100 }
 
   def send_mail(contact)
     @contact = contact

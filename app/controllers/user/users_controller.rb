@@ -19,8 +19,9 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), notice: '編集が完了しました！'
     else
+      flash.now[:alert] = '編集内容を確認してください'
       render :edit
     end
   end
@@ -33,8 +34,9 @@ class User::UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.update(is_active: "無効")
       reset_session
-      redirect_to root_path
+      redirect_to root_path, notice: '退会が完了しました。ご利用ありがとうございました'
     else
+      flash.now[:alert] = '退会が正常に行われませんでした'
       render :unsubscribe
     end
   end

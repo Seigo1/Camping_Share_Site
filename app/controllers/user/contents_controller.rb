@@ -1,6 +1,6 @@
 class User::ContentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @contents = Content.all.order(created_at: :desc)
   end
@@ -21,8 +21,9 @@ class User::ContentsController < ApplicationController
   def create
     @content = Content.new(content_params)
     if @content.save
-      redirect_to content_path(@content.id)
+      redirect_to content_path(@content.id), notice: '投稿が完了しました'
     else
+      flash.now[:alert] = '投稿内容を確認してください'
       render :new
     end
   end
@@ -30,8 +31,9 @@ class User::ContentsController < ApplicationController
   def destroy
     @content = Content.find(params[:id])
     if @content.destroy
-      redirect_to contents_path, notice: '投稿を削除しました'
+      redirect_to contents_path, notice: '投稿を削除しました。'
     else
+      flash.now[:alert] = '投稿を削除できませんでした'
       render :edit
     end
   end
@@ -39,8 +41,9 @@ class User::ContentsController < ApplicationController
   def update
     @content = Content.find(params[:id])
     if @content.update(content_params)
-      redirect_to content_path(@content.id), notice: '投稿の編集が完了しました'
+      redirect_to content_path(@content.id), notice: '投稿の編集が完了しました！'
     else
+      flash.now[:alert] = '投稿の編集に失敗しました'
       render :edit
     end
   end

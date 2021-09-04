@@ -1,5 +1,5 @@
 <div class="container-lg">
-  <h2 class="mt-5"><%= @content.name %></h2>
+  <h2 class="mt-3"><%= @content.name %></h2>
   <div class="row">
     <table class="col-lg table table-bordered mx-auto my-3">
       <thead>
@@ -11,7 +11,7 @@
             <%= @content.review %>
           </td>
           <td rowspan="5" class="text-center">
-            <%= attachment_image_tag @content, :content_image, :fill, 300, 300, size:'300x300', format: 'jpeg', fallback: "no_image.jpeg" %>
+            <%= attachment_image_tag @content, :content_image, :fill, 250, 250, size:'250x250', format: 'jpeg', fallback: "no_image.jpeg" %>
           </td>
         </tr>
         <tr>
@@ -30,8 +30,8 @@
         </tr>
         <tr>
           <td colspan="2" class="text-center">
-            <%= link_to "編集する", edit_admin_content_path(@content.id), class: "btn btn-success mr-5", type:"button" %>
-            <%= link_to "投稿を削除", admin_content_path, method: :delete, class: "btn btn-danger ml-5" %>
+            <%= link_to "編集する", edit_admin_content_path(@content.id), class: "btn btn-success mr-3", type:"button" %>
+            <%= link_to "投稿を削除", admin_content_path, method: :delete, class: "btn btn-danger ml-3", type:"button" %>
           </td>
         </tr>
       </tbody>

@@ -42,10 +42,9 @@
           </td>
         </tr>
         <tr>
-          <th></th>
-          <td class="form-group">
-            <%= f.submit '編集内容を保存', class: "btn btn-success" %>
-            <%= link_to "投稿を削除", admin_content_path, method: :delete, class: "btn btn-danger" %>
+          <td colspan="2" class="form-group">
+            <%= f.submit '編集内容を保存', class: "btn btn-success mr-3" %>
+            <%= link_to "投稿を削除", admin_content_path, method: :delete, class: "btn btn-danger ml-3" %>
           </td>
         </tr>
       </tbody>

@@ -1,41 +1,42 @@
 <%= form_with model: @user,:url => {:action => :update}, local:true do |f| %>
-<div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
-  <div class="row text-center mx-auto" style="width: 80%;">
-    <table class="col-lg table table-bordered mx-auto my-3">
-      <thead>
-      </thead>
-      <tbody>
-        <tr>
-          <th>ニックネーム</th>
-          <td class="form-group">
-            <%= f.text_field :name, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th>写真</th>
-          <td class="form-group">
-            <%= f.attachment_field :image, class: "form-control-file" %>
-          </td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td class="form-group">
-            <%= f.text_field :email, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th>紹介文</th>
-          <td class="form-group">
-            <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th></th>
-          <td class="form-group">
-            <%= f.submit '編集内容を保存', class: "btn btn-success" %>
-            <%= link_to " 退会する", unsubscribe_path, class: "btn btn-danger", type:"button" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container-lg-fluid">
+    <div class="row text-center mx-auto" style="width: 80%;">
+      <table class="col-lg table table-bordered mx-auto my-3">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <th>ニックネーム</th>
+            <td class="form-group">
+              <%= f.text_field :name, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <th>写真</th>
+            <td class="form-group">
+              <%= f.attachment_field :image, class: "form-control-file" %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td class="form-group">
+              <%= f.text_field :email, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <th>紹介文</th>
+            <td class="form-group">
+              <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="form-group">
+              <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+              <%= link_to " 退会する", unsubscribe_path, class: "btn btn-danger", type:"button" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>

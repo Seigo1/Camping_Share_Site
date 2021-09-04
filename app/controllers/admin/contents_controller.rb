@@ -18,6 +18,7 @@ class Admin::ContentsController < ApplicationController
     if @content.destroy
       redirect_to admin_contents_path, notice: '投稿を削除しました'
     else
+      flash.now[:alert] = '投稿の削除に失敗しました'
       render :edit
     end
   end
@@ -27,6 +28,7 @@ class Admin::ContentsController < ApplicationController
     if @content.update(content_params)
       redirect_to admin_content_path(@content.id), notice: '投稿の編集が完了しました'
     else
+      flash.now[:alert] = '投稿の編集に失敗しました'
       render :edit
     end
   end

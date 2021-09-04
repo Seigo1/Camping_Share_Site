@@ -1,76 +1,91 @@
-<div class="container-lg-fluid" style="background-color: rgba(255,250,220,1.0);">
-  <div class="row text-center mx-auto" style="width: 80%;">
-    <table class="col-lg table table-bordered mx-auto my-3">
-      <thead>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="width: 20%;">
-            <%= attachment_image_tag @user, :image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
-          </td>
-          <td>
-            <% if current_user.id == @user.id %>
-              <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
-            <% else %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>ニックネーム</td>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td>紹介文</td>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @user.email %></td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="col-lg table table-bordered mx-auto my-3">
-      <thead>
-        <tr>
-          <th colspan="2">お気に入り</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bookmarks.each do |bookmark| %>
+<div class="container-lg">
+  <div class="row-lg mx-auto">
+    <% if current_user.id == @user.id %>
+      <h3 class="pt-3 text-center">マイページ</h3>
+    <% else %>
+      <h3 class="pt-3 text-center"><%= @user.name%>のページ</h3>
+    <% end %>
+    <div class="text-center">
+      <%= attachment_image_tag @user, :image, :fill, 150, 150, size:'150x150', format: 'jpeg', fallback: "no_image.jpeg", style: "border-radius: 50%;" %>
+    </div>
+    <div class="col-3-lg my-3">
+      <table class="table table-bordered">
+        <thead>
+        </thead>
+        <tbody>
           <tr>
-            <td>キャンプ場名</td>
-            <td colspan="2">
-            <%= link_to content_path(bookmark.content.id) do %>
-              <%= bookmark.content.name %>
-            <% end %>
+            <td style="width: 20%;">ニックネーム</td>
+            <td style="width: 80%;"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>紹介文</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <% if current_user.id == @user.id %>
+                <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
+              <% else %>
+              <% end %>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="row text-center mx-auto" style="width: 80%;">
-    <table class="col-lg table table-bordered mx-auto my-3">
-      <thead>
-        <th>キャンプ場名</th>
-        <th>住所</th>
-        <th>紹介文</th>
-        <th>評価</th>
-      </thead>
-      <tbody>
-        <% @contents.each do |content| %>
-        <tr>
-          <td>
-            <%= link_to content_path(content.id) do %>
-              <%= content.name %>
+  <div class="row text-center mx-auto">
+    <% if current_user.id == @user.id %>
+      <div class="col-3-lg mr-3 my-3">
+        <h4>ブックマーク</h4>
+        <table class="table table-bordered">
+          <thead>
+            <th>キャンプ場名</th>
+            <th>評価</th>
+          </thead>
+          <tbody>
+            <% @bookmarks.each do |bookmark| %>
+              <tr>
+                <td>
+                <%= link_to content_path(bookmark.content.id) do %>
+                  <%= bookmark.content.name %>
+                <% end %>
+                </td>
+                <td><%= bookmark.content.review %></td>
+              </tr>
             <% end %>
-            </td>
-          <td><%= content.address %></td>
-          <td><%= content.introduction %></td>
-          <td><%= content.review %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+    <% end %>
+    <div class="col-7-lg mr-3 my-3">
+      <h4>投稿</h4>
+      <table class="table table-bordered">
+        <thead>
+          <th>キャンプ場名</th>
+          <th>住所</th>
+          <th>紹介文</th>
+          <th>評価</th>
+        </thead>
+        <tbody>
+          <% @contents.each do |content| %>
+          <tr>
+            <td>
+              <%= link_to content_path(content.id) do %>
+                <%= content.name %>
+              <% end %>
+              </td>
+            <td><%= content.address %></td>
+            <td><%= content.introduction %></td>
+            <td><%= content.review %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
