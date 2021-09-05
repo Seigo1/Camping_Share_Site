@@ -21,18 +21,19 @@
             <td>紹介文</td>
             <td><%= @user.introduction %></td>
           </tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= @user.email %></td>
-          </tr>
-          <tr>
-            <td colspan="3" class="text-center">
-              <% if current_user.id == @user.id %>
+          <% if current_user.id == @user.id %>
+            <tr>
+              <tr>
+              <td>メールアドレス</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
                 <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success", type:"button" %>
-              <% else %>
-              <% end %>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          <% else %>
+          <% end %>
         </tbody>
       </table>
     </div>

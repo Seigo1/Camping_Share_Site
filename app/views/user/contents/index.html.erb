@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <% if @search_contents %>
-            <% @search_contents.first(20).each do |content| %>
+            <% @search_contents.each do |content| %>
               <tr>
                 <td><%= content.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
                 <td>
@@ -28,7 +28,7 @@
               </tr>
             <% end %>
           <% else %>
-            <% @contents.first(20).each do |content| %>
+            <% @contents.each do |content| %>
               <tr>
                 <td><%= content.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
                 <td>

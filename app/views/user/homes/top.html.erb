@@ -1,9 +1,9 @@
 <div class="container-lg-fluid">
-  <div class="row cover-1 text-center mx-auto" style="height: 700px; padding: 150px 0 150px 0;">
+  <div class="row cover-1 text-center mx-auto" style="height: 700px; padding: 200px 0 150px 0;">
     <div class="col-lg mb-5">
       <h1 class="title mx-auto mb-4">Camping Share Site</h1>
-      <a>キャンプ好きのための検索サイト</a><br />
-      <div style="margin-top: 60px;">
+      <a>キャンプ好きのための検索サイト</a>
+      <div style="margin-top: 100px;">
         <% if user_signed_in? %>
           <%= link_to "投稿する", new_content_path, class: "btn-lg btn-light" %>
         <% elsif %>
@@ -12,10 +12,24 @@
       </div>
     </div>
   </div>
-  <div class="row-lg text-center mx-auto">
-    <h1>About</h1>
-    <a>このサイトは、キャンプやアウトドアを趣味にしている方のために作ったサイトです。</a><br />
-    <a>あなたが利用して良かったキャンプ場やあまり知られていないキャンプ場を共有することで</a><br />
-    <a>みなさんのキャンプをより良いものにできたら幸いです！</a>
-  </div>
+  <% if user_signed_in? %>
+    <h4 class="text-center my-3">最近の投稿</h4>
+    <div class="row text-center">
+      <% @contents.first(6).each do |content| %>
+        <div class="col-2 my-3">
+          <%= link_to content_path(content.id) do %>
+            <%= attachment_image_tag content, :content_image, :fill, 100, 100, size:'100x100', format: 'jpeg', fallback: "no_image.jpeg" %>
+          <% end %><br/>
+          <%= content.name %><br/>
+        </div>
+      <% end %>
+    </div>
+  <% elsif %>
+    <div class="row-lg text-center mx-auto py-3">
+      <h1>About</h1>
+      <a>このサイトは、キャンプやアウトドアを趣味にしている方のために作ったサイトです。</a><br />
+      <a>あなたが利用して良かったキャンプ場やあまり知られていないキャンプ場を共有することで</a><br />
+      <a>みなさんのキャンプをより良いものにできたらと思っています。</a>
+    </div>
+  <% end %>
 </div>
