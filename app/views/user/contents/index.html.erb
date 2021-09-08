@@ -1,8 +1,11 @@
 <div class="container-lg-fluid">
   <div class="row-lg mx-auto">
     <h3 class="pt-3 text-center">投稿一覧</h3>
-    <div class="col-3-lg mt-3">
-      <table class="lg table table-bordered mx-auto mb-5" style="width: 80%;">
+    <div class="col-10 mx-auto">
+      <div class="text-right my-3">
+        <%= link_to "投稿する", new_content_path, class: "btn btn-outline-dark fa fa-plus-circle" %>
+      </div>
+      <table class="table table-bordered mx-auto mb-5">
         <thead class="thead-dark">
           <tr>
             <th style="width: 15%;">日時</th>
