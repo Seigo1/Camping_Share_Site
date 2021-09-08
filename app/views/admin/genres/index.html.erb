@@ -3,11 +3,13 @@
   <div class="lg">
     <%= form_for @new_genre,:url => {:action => :create}, local:true do |f| %>
       <div class="form-group">
-        <label for="genre_name">ジャンル名</label>
-        <div style="width: 200px;"><%= f.text_field :name, class: "form-control" %></div>
+        <%= f.label "ジャンル名" %>
+        <div style="width: 200px;">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <div><%= f.submit '新規登録', class: "btn btn-success" %></div>
+        <%= f.submit '新規登録', class: "btn btn-success" %>
       </div>
     <% end %>
   </div>
